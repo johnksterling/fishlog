@@ -1,9 +1,24 @@
+{% extends 'trips/base.html' %}
+{% block content %}
 {% if trip_list %}
-    <ul>
-    {% for trip in trip_list %}
-        <li><a href="/trips/{{ trip.id }}/">{{ trip.description }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No trips are available.</p>
-{% endif %}
+<div class="button-group">
+  <a href="/trips/add" class="btn"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Trip</a> 
+<div class="container">
+  <table class="table">
+    <thead><tr>
+      <th>Date</th>
+      <th>Description</th>
+    </tr></thead>
+    <tbody>
+      {% for trip in trip_list %}
+      <tr>
+        <th class="content-main col-md-4">{{trip.trip_date|date:"D d M Y"}}</th>
+        <th class="content-main col-md-8"><a href="{% url 'trip_detail' trip.id %}">{{ trip.description }}</a></th>
+      </tr>
+      {% endfor %}
+    </tbody>
+    {% endif %}
+  </table>
+</div>
+{% endblock %}
+

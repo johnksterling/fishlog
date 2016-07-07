@@ -24,6 +24,10 @@ from secret_settings import *
 
 # Application definition
 
+PIPELINE_COMPILERS = (
+  'react.utils.pipeline.JSXCompiler',
+)
+
 INSTALLED_APPS = [
     'trips.apps.TripsConfig',
     'locations.apps.LocationsConfig',
@@ -47,6 +51,8 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'fishlog.urls'
+
+LOGIN_URL = '/admin/login/'
 
 TEMPLATES = [
     {
