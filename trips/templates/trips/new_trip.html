@@ -6,10 +6,10 @@ $(document).ready(function() {
     $('.datepicker').datepicker();
 });
 </script>
-<form action="{% url 'update_trip' form.id %}" method="post">
+
+<form action="{% url 'update_trip' 1 %}" method="post">
   {% csrf_token %}
   {% load crispy_forms_tags %}
   {% crispy form form.helper %}
 </form>
 {% endblock %}
-
