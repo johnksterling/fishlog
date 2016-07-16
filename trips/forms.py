@@ -2,8 +2,8 @@ from django import forms
 
 from .models import Trip
 from crispy_forms.helper import FormHelper
-from crispy_forms.helper import Layout
 from crispy_forms.layout import Submit
+
 
 class TripForm(forms.ModelForm):
 
@@ -14,7 +14,9 @@ class TripForm(forms.ModelForm):
 
     class Meta:
         model = Trip
-        fields = ('id','description', 'comments', 'trip_date', 'location', 'score')
+        fields = ('id', 'description', 'comments',
+                  'trip_date', 'location', 'score', 'user')
         widgets = {
-            'trip_date' : forms.DateInput(attrs={'class':'datepicker'}),
+            'trip_date': forms.DateInput(attrs={'class': 'datepicker'}),
+            'user': forms.HiddenInput(),
         }
