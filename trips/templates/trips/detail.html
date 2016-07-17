@@ -2,17 +2,14 @@
 {% block content %}
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <script>
-$(document).ready(function() {
-    $('.datepicker').datepicker();
-});
+  $(document).ready(function() {
+  $('.datepicker').datepicker();
+  });
 </script>
 <form action="{% url 'update_trip' form.id %}" method="post">
   {% csrf_token %}
   {% load crispy_forms_tags %}
   {% crispy form form.helper %}
 </form>
-<div class="button-group">
-  <a href="{% url 'delete_trip' form.id %}" class="btn"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Delete Trip</a>
-</div>
 {% endblock %}
 

@@ -1,20 +1,38 @@
 {% extends 'trips/base.html' %}
 {% block content %}
 {% if trip_list %}
+<script>
+  
+  function validate() {
+      var valid = confirm('Are you sure you want to delete this trip?');
+      if (valid) {
+          return true;
+      }
+      else {
+          return false;
+      }
+  }
+</script>
 <div class="button-group">
   <a href="/trips/new" class="btn"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Trip</a>
 </div>
 <div class="container">
   <table class="table">
     <thead><tr>
+      <th>Action</th>
       <th>Date</th>
       <th>Description</th>
     </tr></thead>
     <tbody>
       {% for trip in trip_list %}
       <tr>
-        <th class="content-main col-md-4">{{trip.trip_date|date:"D d M Y"}}</th>
-        <th class="content-main col-md-8"><a href="{% url 'trip_detail' trip.id %}">{{ trip.description }}</a></th>
+        <th class="content-main col-md-1">
+          <div class="btn-group">
+            <a  onclick="return validate()" href="{% url 'delete_trip' trip.id %}" class="btn"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </a><a href="{% url 'trip_detail' trip.id %}" class="btn"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> </a>
+          </div>
+        </th>
+        <th class="content-main col-md-3">{{trip.trip_date|date:"D d M Y"}}</th>
+        <th class="content-main col-md-8">{{ trip.description }}</th>
       </tr>
       {% endfor %}
     </tbody>
