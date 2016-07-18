@@ -20,7 +20,7 @@ DEBUG
 ALLOWED_HOSTS
 DATABASES
 """
-from secret_settings import *
+from fishlog.secret_settings import * 
 
 # Application definition
 
