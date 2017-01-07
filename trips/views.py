@@ -22,8 +22,7 @@ def trip_detail(request, trip_id):
 
 
 def list_trips(request):
-    trip_list = \
-        Trip.objects.filter(user=request.user).order_by('-trip_date')[:5]
+    trip_list = Trip.objects.filter(user=request.user).order_by('-trip_date')[:5]
     context = {
         'trip_list': trip_list,
     }

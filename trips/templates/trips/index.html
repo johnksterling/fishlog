@@ -1,4 +1,5 @@
 {% extends 'trips/base.html' %}
+{% load num_range %}
 {% block content %}
 {% if trip_list %}
 <script>
@@ -22,6 +23,7 @@
       <th>Action</th>
       <th>Date</th>
       <th>Description</th>
+      <th>Rating</th>
     </tr></thead>
     <tbody>
       {% for trip in trip_list %}
@@ -31,8 +33,10 @@
             <a  onclick="return validate()" href="{% url 'delete_trip' trip.id %}" class="btn"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </a><a href="{% url 'trip_detail' trip.id %}" class="btn"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> </a>
           </div>
         </th>
+        {% num_range trip.score as star_range %}
         <th class="content-main col-md-3">{{trip.trip_date|date:"D d M Y"}}</th>
-        <th class="content-main col-md-8">{{ trip.description }}</th>
+        <th class="content-main col-md-6">{{ trip.description }}</th>
+        <th class="content-main col-md-2">{% for star in star_range %}<span class="glyphicon glyphicon-star"></span>{% endfor %}</th>
       </tr>
       {% endfor %}
     </tbody>
