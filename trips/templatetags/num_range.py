@@ -31,12 +31,5 @@ def num_range(parser, token):
     3: Something I want to repeat
     4: Something I want to repeat
     """
-    try:
-        fnctn, num, trash, context_name = token.split_contents()
-    except ValueError:
-        raise TemplateSyntaxError, "%s takes the syntax %s number_to_iterate\
-            as context_variable" % (fnctn, fnctn)
-    if not trash == 'as':
-        raise TemplateSyntaxError, "%s takes the syntax %s number_to_iterate\
-            as context_variable" % (fnctn, fnctn)
+    fnctn, num, trash, context_name = token.split_contents()
     return RangeNode(num, context_name)
