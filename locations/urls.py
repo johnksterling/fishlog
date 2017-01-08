@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^(?P<location_id>[0-9]+)/delete$', login_required(views.delete_location),
         name='delete_location'),
     url(r'^(?P<location_id>[0-9]+)/$', views.location_detail, name='location_detail'),
+    url(r'^map$', views.view_map, name='view_map'),
 ]
