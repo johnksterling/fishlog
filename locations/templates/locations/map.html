@@ -2,20 +2,19 @@
 {% block content %}
     <script>
       function initMap() {
-        var spot1 = {lat: 44.798819, lng:  -69.889085};
-        var spot2 = {lat: 45.876836, lng:  -69.138582};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 6,
-          center: spot1
-        });
-        var marker = new google.maps.Marker({
-          position: spot1,
-          map: map
-        });
-        var marker2 = new google.maps.Marker({
-          position: spot2,
-          map: map
-        });
+          var spot1 = {lat: 44.798819, lng:  -69.889085};
+          var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 6,
+              center: spot1
+              });
+        {% for l in location_list %}
+          var spot = new google.maps.LatLng({{ l.latitude }}, {{ l.longitude }});
+          var marker = new google.maps.Marker({
+            position: spot,
+            title: '{{ l.name }}',
+            map: map
+            });
+        {% endfor %}
       }
     </script>
     <div id="map"></div>

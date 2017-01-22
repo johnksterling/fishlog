@@ -1,12 +1,7 @@
 {% extends 'trips/base.html' %}
 {% block content %}
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<script>
-  $(document).ready(function() {
-  $('.datepicker').datepicker();
-  });
-</script>
-<form action="{% url 'update_trip' form.id %}" method="post">
+<form action="{% url 'update_location' form.id %}" method="post">
   {% csrf_token %}
   {% load crispy_forms_tags %}
   {% crispy form form.helper %}
