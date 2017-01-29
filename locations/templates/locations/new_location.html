@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<script src="{% static "js/map_location.js" %}"></script>
 <script>
 $(document).ready(function() {
     $('.datepicker').datepicker();
-});
+    });
 </script>
 
 <form action="{% url 'create_location' %}" method="post">
@@ -12,4 +14,6 @@ $(document).ready(function() {
   {% load crispy_forms_tags %}
   {% crispy form form.helper %}
 </form>
+<div id="map" style="width: 500px; height: 400px;"></div>
 {% endblock %}
+
