@@ -15,3 +15,8 @@ class Trip(models.Model):
 
     def __str__(self):
         return self.description
+
+
+class TripPicture(models.Model):
+    trip = models.ForeignKey(Trip, on_delete=models.CASCADE, null=True)
+    image = models.ImageField(upload_to='images')

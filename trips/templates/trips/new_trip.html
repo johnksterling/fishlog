@@ -7,9 +7,10 @@ $(document).ready(function() {
 });
 </script>
 
-<form action="{% url 'create_trip' %}" method="post">
+<form action="{% url 'create_trip' %}" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {% load crispy_forms_tags %}
   {% crispy form form.helper %}
 </form>
 {% endblock %}
+

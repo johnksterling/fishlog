@@ -1,6 +1,9 @@
 from django.shortcuts import get_object_or_404, render
-from trips.models import Trip
+from django.views.generic.edit import FormView
+from django.http import HttpResponseRedirect
+
 from trips.forms import TripForm
+from trips.models import Trip, TripPicture
 
 
 # Trip access
@@ -44,5 +47,21 @@ def delete_trip(request, trip_id):
 def update_trip(request, trip_id):
     trip = get_object_or_404(Trip, pk=trip_id)
     f = TripForm(data=request.POST, instance=trip)
-    f.save()
-    return list_trips(request)
+    if f.is_valid():
+        f.save()
+        return list_trips(request)
+    else:
+        f.id = trip_id
+        return render(request, 'trips/detail.html', {'form': f})
+
+
+class CreateTripView(FormView):
+    template_name = 'trips/new_trip.html'
+    form_class = TripForm
+    success_url = '/trips/'
+
+    def form_valid(self, form):
+        trip = get_object_or_404(Trip, pk=form.get('id'))
+        for each in form.cleaned_data['attachments']:
+            TripPicture.objects.create(image=each, trip=trip)
+        return super(CreateTripView, self).form_valid(form)
