@@ -15,3 +15,8 @@ class Trip(models.Model):
 
     def __str__(self):
         return self.description
+
+
+class TripImage(models.Model):
+    trip = models.ForeignKey(Trip, related_name='images')
+    image = models.ImageField()

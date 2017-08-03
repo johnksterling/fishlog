@@ -1,4 +1,4 @@
-{% extends base.html' %}
+{% extends 'base.html' %}
 {% block content %}
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <form action="{% url 'update_location' form.id %}" method="post">
@@ -7,4 +7,3 @@
   {% crispy form form.helper %}
 </form>
 {% endblock %}
-
